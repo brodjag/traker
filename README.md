@@ -1,5 +1,5 @@
 # traker
-<b>it makes tracking and image requests.</b><br/>
+<b>It makes tracking and image requests.</b><br/>
 This is my second experience with map and tracking.<br/>
 It uses API panoramio for image requests. (thank Jonas S. for the idea!)<br/>
 
