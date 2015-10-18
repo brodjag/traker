@@ -16,6 +16,6 @@ it also uses stratch UI  for all display size.
 
 
 
-
+/play bell
 
 
