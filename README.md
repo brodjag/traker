@@ -14,8 +14,3 @@ it also uses stratch UI  for all display size.
 <Image width=300 height=450 hspace=5 vspace=5 src="https://dl.dropboxusercontent.com//s/8l07cfyprbvbtbk/Screenshot_2015-10-18-13-25-15.png?dl=0" />
 <Image width=300 height=450 hspace=5 vspace=5 src="https://dl.dropboxusercontent.com/s/oeaiy1rozd4bwsl/Screenshot_2015-10-18-13-54-00.png?dl=0" />
 
-
-
-
-
-
