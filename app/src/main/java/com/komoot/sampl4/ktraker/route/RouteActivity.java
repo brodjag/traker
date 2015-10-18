@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,6 +29,7 @@ public class RouteActivity  extends AppCompatActivity {
     public DbAdapter db;
     Intent serviceIntent;
     RecyclerSet recyclerSet;
+    mapSet MymapSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class RouteActivity  extends AppCompatActivity {
         recyclerSet=new RecyclerSet(this);
 
         setBroadcast();
-        new mapSet(this);
+        MymapSet= new mapSet(this);
 
     }
 
@@ -114,12 +116,15 @@ public class RouteActivity  extends AppCompatActivity {
            @Override
            public void onReceive(Context context, Intent intent) {
                String url=intent.getStringExtra("url");
-               recyclerSet.addItem(url);
+               if(!url.equals("")) recyclerSet.addItem(url);
+
+               double lan=intent.getDoubleExtra("lan",0);
+               double lon=intent.getDoubleExtra("lon",0);
+               Log.d("qqq","lan="+lan);
+               MymapSet.updatePoliline(lan,lon);
            }
        };
-       // создаем фильтр для BroadcastReceiver
        IntentFilter intFilt = new IntentFilter(BROADCAST_ACTION);
-       // регистрируем (включаем) BroadcastReceiver
        registerReceiver(broadcastReceiver, intFilt);
    }
 }

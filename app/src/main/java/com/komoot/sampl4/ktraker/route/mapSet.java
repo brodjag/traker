@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.komoot.sampl4.ktraker.R;
 
+import java.util.List;
+
 /**
  * Created by brodjag on 17.10.15.
  */
@@ -31,9 +33,10 @@ public class mapSet {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap=googleMap;
-                setPosition(53,48);
-                updatePoliline(53.2, 48.3);
-                updatePoliline(53.0,48.1);
+                //setPosition(53,48);
+               // updatePoliline(53.2, 48.3);
+               // updatePoliline(53.0,48.1);
+                setPoliline();
             }
         });
     }
@@ -51,7 +54,7 @@ public class mapSet {
     }
 
 
-public    void updatePoliline(double lan,double lon){
+    public    void updatePoliline(double lan,double lon){
     //todo make call with sql request
        mMap.clear();
        polylineOptions.add(new LatLng(lan, lon));
@@ -63,6 +66,29 @@ public    void updatePoliline(double lan,double lon){
        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
        mMap.animateCamera(cameraUpdate);
    }
+
+
+    public    void setPoliline(){
+        mMap.clear();
+        List<LatLng> points=con.db.getPoints("" + con.routeID);
+
+        for(int i=0;i<points.size();i++){
+            polylineOptions.add(points.get(i));
+        }
+        mMap.addPolyline(polylineOptions);
+
+        LatLng target=new LatLng(0,0);
+       if(points.size()>0) target =points.get(points.size()-1);
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(target)
+                .zoom(12)
+                .bearing(0)
+                .tilt(20)
+                .build();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        mMap.animateCamera(cameraUpdate);
+    }
 
 
 

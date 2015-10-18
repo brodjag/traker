@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +79,22 @@ public class DbAdapter  {
             cursor.moveToPosition(i);
             String item=""+cursor.getString(0).toString();
             Log.d("qqq "+i, item);
+            res.add(item);
+        }
+        cursor.close();
+        db.close();
+        return res;
+    }
+
+    public List<LatLng> getPoints(String route_id){
+        SQLiteDatabase db=DBHelper1.getReadableDatabase();
+        String request="select langitude, longitude from points where route_id='"+route_id+"'";
+        Cursor cursor=db.rawQuery(request,new String[]{}); //db.query("points",new String[]{"image_url"},"image_url!='' and route_id='%s'",new String[]{route_id},null,null,null);
+        List<LatLng> res=new ArrayList<LatLng>();
+        if(cursor.getCount()==0){return res;}
+        for(int i=0;i<cursor.getCount(); i++){
+            cursor.moveToPosition(i);
+            LatLng item=new LatLng(cursor.getDouble(0),cursor.getDouble(1));
             res.add(item);
         }
         cursor.close();

@@ -73,7 +73,7 @@ public class trakingService extends Service {
     LocationManager mLocationManager;
     LocationListener mLocationListener;
     private static final long LOCATION_REFRESH_TIME = 1000*3;
-    private static final long LOCATION_REFRESH_DISTANCE = 100;
+    private static final long LOCATION_REFRESH_DISTANCE = 50;
     //******************************
     void setLocation(){
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -87,7 +87,12 @@ public class trakingService extends Service {
              */
             @Override
             public void onLocationChanged(Location location) {
-                if(OldLocation==null){OldLocation=location;  return;}
+                if(OldLocation==null){
+                    OldLocation=location;
+                    db.insertPoints(""+routeId,location.getLatitude(),location.getLongitude(),"");
+                    sendboadcast("",location.getLatitude(),location.getLongitude());
+                    return;
+                }
 
                 if (location.distanceTo(OldLocation)>=RequestDistantion){
                     imageCall(OldLocation,location);
@@ -173,12 +178,13 @@ public class trakingService extends Service {
                }catch (Exception e){}
 
             db.insertPoints(""+routeId,location.getLatitude(),location.getLongitude(),imageUrl);
-                sendboadcast(imageUrl);
+                sendboadcast(imageUrl,location.getLatitude(),location.getLongitude());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 db.insertPoints(""+routeId,location.getLatitude(),location.getLongitude(),"");
+                sendboadcast("", location.getLatitude(), location.getLongitude());
             }
         });
 
@@ -186,9 +192,11 @@ queue.add(jsObjRequest);
     }
 
 
-   void sendboadcast(String url){
+   void sendboadcast(String url,double lan,double lon){
        Intent intent = new Intent(RouteActivity.BROADCAST_ACTION);
        intent.putExtra("url",url);
+       intent.putExtra("lan",lan);
+       intent.putExtra("lon",lon);
        sendBroadcast(intent);
    }
 
