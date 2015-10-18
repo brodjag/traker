@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"  android:orientation="vertical"
+    tools:context="com.komoot.sampl4.ktraker.route.RouteActivity">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent" android:background="#5f5"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:id="@+id/recyclerView"  />
+</LinearLayout>

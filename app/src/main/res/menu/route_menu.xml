@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/action_tracking_start" android:title="Start"
+        android:orderInCategory="100" app:showAsAction="always" android:menuCategory="secondary"  />
+
+    <item android:id="@+id/action_tracking_stop" android:title="Stop" android:visible="false"
+        android:orderInCategory="100" app:showAsAction="always" android:menuCategory="secondary"  />
+
+    <item android:id="@+id/action_remove" android:title="remove"
+        android:orderInCategory="100" app:showAsAction="always" android:menuCategory="secondary"  />
+</menu>
