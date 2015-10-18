@@ -1,7 +1,7 @@
-# traker
+# Traker
 ##It makes tracking and image requests.
 This is my second experience with map and tracking.<br/>
-It uses API panoramio for image requests. (thank Jonas S. for the idea! :smile:)<br/>
+It uses API panoramio for image requests. (thank Jonas S. for the idea! :thumpsup: )<br/>
 
 it takes location. If the destantion more 100 meters, it makes request to image by location.
 After this it saves locations and image url (if it exist) in DB.<br/>
