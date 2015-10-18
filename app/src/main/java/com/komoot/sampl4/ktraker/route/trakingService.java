@@ -70,6 +70,7 @@ public class trakingService extends Service {
 
     }
 
+
     LocationManager mLocationManager;
     LocationListener mLocationListener;
     private static final long LOCATION_REFRESH_TIME = 1000*3;
