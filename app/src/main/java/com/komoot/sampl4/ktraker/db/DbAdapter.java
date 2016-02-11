@@ -62,6 +62,7 @@ public class DbAdapter  {
         initialValues.put("langitude", lan);
         initialValues.put("longitude", lon);
         initialValues.put("image_url", imageUrl);
+        initialValues.put("cdate",System.currentTimeMillis());
         Log.d("qqq",initialValues.toString());
         long res= db.insert(TABLE_POINTS, null, initialValues);
         db.close();
@@ -97,6 +98,20 @@ public class DbAdapter  {
             LatLng item=new LatLng(cursor.getDouble(0),cursor.getDouble(1));
             res.add(item);
         }
+        cursor.close();
+        db.close();
+        return res;
+    }
+
+
+    public String getRouteName(String route_id){
+        SQLiteDatabase db=DBHelper1.getReadableDatabase();
+        String request="select name from routes where id='"+route_id+"'";
+        Cursor cursor=db.rawQuery(request,new String[]{}); //db.query("points",new String[]{"image_url"},"image_url!='' and route_id='%s'",new String[]{route_id},null,null,null);
+        String res="";
+        if(cursor.getCount()==0){return res;}
+        cursor.moveToFirst();
+        res= cursor.getString(0);
         cursor.close();
         db.close();
         return res;

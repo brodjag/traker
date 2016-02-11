@@ -1,5 +1,6 @@
 package com.komoot.sampl4.ktraker.route_list;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -18,15 +19,16 @@ import com.komoot.sampl4.ktraker.R;
 import com.komoot.sampl4.ktraker.route.RouteActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private DbAdapter db;
+    public DbAdapter db;
+    newRouteDialogFragment routeDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db=new DbAdapter(this);
-        //long res= db.insertRoutes("route #2");
-        //Log.d("qq", ""+res);
         setContentView(R.layout.activity_main);
         setRecykler();
+
+        routeDialog=newRouteDialogFragment.newInstance();
     }
 
     private void setRecykler() {
@@ -43,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //look Route
-                Toast.makeText(getBaseContext(),"id "+id,Toast.LENGTH_SHORT).show();
-                Intent intent= new Intent(getBaseContext(),RouteActivity.class);
-                intent.putExtra("routeID",id);
+                Toast.makeText(getBaseContext(), "id " + id, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), RouteActivity.class);
+                intent.putExtra("routeID", id);
                 startActivity(intent);
                 finish();
 
@@ -70,16 +72,21 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            routeDialog.show(getSupportFragmentManager(),"new route dlg");
+/*
             long routeID= db.insertRoutes("route #4");
             Intent intent= new Intent(getBaseContext(),RouteActivity.class);
             intent.putExtra("routeID",routeID);
             startActivity(intent);
             finish();
+            */
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     @Override
     public void onDestroy(){

@@ -8,6 +8,16 @@
     <item android:id="@+id/action_tracking_stop" android:title="Stop" android:visible="false"
         android:orderInCategory="100" app:showAsAction="always" android:menuCategory="secondary"  />
 
-    <item android:id="@+id/action_remove" android:title="remove"
-        android:orderInCategory="100" app:showAsAction="always" android:menuCategory="secondary"  />
+    <item android:id="@+id/action_remove" android:title="Remove"
+        android:orderInCategory="100"  android:menuCategory="secondary"  />
+
+
+    <item android:id="@+id/action_rename1" android:title="Rename"
+        android:orderInCategory="100"  android:menuCategory="secondary"  />
+
+    <item android:id="@+id/action_info" android:title="Total Info"
+        android:orderInCategory="100"  android:menuCategory="secondary"  />
+
+    <item android:id="@+id/action_share" android:title="Share"
+        android:orderInCategory="100"  android:menuCategory="secondary"  />
 </menu>

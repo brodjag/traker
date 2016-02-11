@@ -28,15 +28,14 @@ public class mapSet {
     public mapSet(RouteActivity c){
         con=c;
         polylineOptions=new PolylineOptions();
+        polylineOptions.width(2);
         MapFragment mapFragment = (MapFragment) con.getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap=googleMap;
-                //setPosition(53,48);
-               // updatePoliline(53.2, 48.3);
-               // updatePoliline(53.0,48.1);
                 setPoliline();
+
             }
         });
     }

@@ -73,8 +73,8 @@ public class trakingService extends Service {
 
     LocationManager mLocationManager;
     LocationListener mLocationListener;
-    private static final long LOCATION_REFRESH_TIME = 1000*3;
-    private static final long LOCATION_REFRESH_DISTANCE = 50;
+    private static final long LOCATION_REFRESH_TIME = 1000*4;
+    private static final long LOCATION_REFRESH_DISTANCE = 20;
     //******************************
     void setLocation(){
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);

@@ -31,6 +31,8 @@ public class RouteActivity  extends AppCompatActivity {
     RecyclerSet recyclerSet;
     mapSet MymapSet;
 
+    RouteInfoFragmentDialog infoDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class RouteActivity  extends AppCompatActivity {
 
         setBroadcast();
         MymapSet= new mapSet(this);
+
+        setTitle(db.getRouteName(""+routeID));
+        infoDialog=new RouteInfoFragmentDialog();
 
     }
 
@@ -87,6 +92,11 @@ public class RouteActivity  extends AppCompatActivity {
             stopService(serviceIntent);
             item.setVisible(false);
             menu_start.setVisible(true);
+            return true;
+        }
+
+        if (id == R.id.action_info) {
+            infoDialog.show(getFragmentManager(),"infoDLG");
             return true;
         }
 
